@@ -4,14 +4,19 @@ public class Prompt
 {
 // Prompt List
     List<string> promptsList = new List<string>();
-        public void promptsList.Add("Prompt1");
-        public void promptsList.Add("Prompt2");
-        public void promptsList.Add("Prompt3");
-        public void promptsList.Add("Prompt4");
-        public void promptsList.Add("Prompt5");
+    string display1;
+
+    public Prompt()
+    {
+        promptsList.Add("Prompt1");
+        promptsList.Add("Prompt2");
+        promptsList.Add("Prompt3");
+        promptsList.Add("Prompt4");
+        promptsList.Add("Prompt5");
 
 // Fetch Prompt
-    string display1 = Prompt.promptsList[0];
+        display1 = promptsList[0];
+    }
 
     public void ChoosePrompt()
     {

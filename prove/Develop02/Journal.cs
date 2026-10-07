@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 public class Journal
     {
-        public string _entries = Entry[0];
+        public Entry[] _entries = new Entry[0];
         public int _entryCount = 0;
 
 // Create new entry

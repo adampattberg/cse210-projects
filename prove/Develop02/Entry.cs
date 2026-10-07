@@ -2,8 +2,7 @@ public class Entry
 {
     public string _prompt = "";
     public string _input = "";
-    DateTime theCurrentTime = DateTime.Now;
-    string _dateText = theCurrentTime.ToShortDateString();
+    string _dateText = DateTime.Now.ToShortDateString();
     public string _mood = "";
 
     public void DisplayEntry()
