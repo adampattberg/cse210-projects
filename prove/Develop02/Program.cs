@@ -7,29 +7,33 @@ class Program
     {
         Console.WriteLine ("Please select one of the following choices:\n1. Write\n2. Display\n3. Load\n4. Save\n5. Quit\nWhat would you like to do? ");
         string userChoice = Console.ReadLine ();
+        int userSelect = int.Parse(userChoice);
+
         
-        if (userChoice = 1)
+        
+        if (userSelect == 1)
         {
-            Journal entry1 = new Journal.WriteEntry;
+            Journal entry1 = new Journal();
         }
 
-        if (userChoice = 2)
+        if (userSelect == 2)
         {
-            Journal display1 = new Journal.DisplayJournal;
+            Journal display1 = new Journal();
         }
 
-        if (userChoice = 3)
+        if (userSelect == 3)
         {
-            Journal load1 = new Journal.LoadFromFile;
+            Journal load1 = new Journal();
         }
 
-        if (userChoice = 4)
+        if (userSelect == 4)
         {
-            Journal save1 = new Journal.SaveToFile;
+            Journal save1 = new Journal();
         }
 
-        if (userChoice = 5)
+        if (userSelect == 5)
         {
-            Console.WriteLine ("Quitter")
+            Console.WriteLine ("Quitter");
         }
+    }
 }

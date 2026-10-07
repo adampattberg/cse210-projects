@@ -2,15 +2,18 @@ public class Entry
 {
     public string _prompt = "";
     public string _input = "";
-    public string _dateTime = "10/5/2026";
+    DateTime theCurrentTime = DateTime.Now;
+    string _dateText = theCurrentTime.ToShortDateString();
     public string _mood = "";
 
     public void DisplayEntry()
     {
-        Console.WriteLine("");
-        Console.WriteLine($"{_dateTime}");
         Console.WriteLine($"{_prompt}");
+        Console.WriteLine("");
+        Console.WriteLine($"{_dateText}");
+        Console.WriteLine("");
         Console.WriteLine($"{_input}");
+        Console.WriteLine("");
         Console.WriteLine($"{_mood}");
     }
 }
