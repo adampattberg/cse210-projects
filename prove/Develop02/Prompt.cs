@@ -13,13 +13,14 @@ public class Prompt
         promptsList.Add("Prompt3");
         promptsList.Add("Prompt4");
         promptsList.Add("Prompt5");
-
-// Fetch Prompt
-        display1 = promptsList[0];
     }
 
+// Fetch Prompt
     public void ChoosePrompt()
     {
+        Random random = new Random();
+        int randomPrompt = random.Next(promptsList.Count);
+        display1 = promptsList[randomPrompt];
         Console.WriteLine($"{display1}");
     }
 
