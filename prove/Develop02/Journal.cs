@@ -12,12 +12,12 @@ public class Journal
     public void WriteEntry()
     {
     // Pulls from Prompt.cs and runs ChoosePrompt
+        Console.WriteLine("");
         Prompt promptGenerator1 = new Prompt();
         promptGenerator1.ChoosePrompt();
     // Adds to _entryCount, records user input through _input, records user mood through _mood
         Entry entry1 = new Entry();
         _entryCount = +1;
-        Console.WriteLine("");
         entry1._input = Console.ReadLine();
         Console.WriteLine("");
         Console.WriteLine("What is your current mood?");
