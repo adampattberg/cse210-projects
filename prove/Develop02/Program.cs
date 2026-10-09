@@ -19,32 +19,28 @@ class Program
 
 
             if (userSelect == 1)
-            {
-                Journal entry1 = new Journal();
-                entry1.WriteEntry();
+            {   
+                userJournal.WriteEntry();
             }
 
             if (userSelect == 2)
             {
-                Journal display1 = new Journal();
-                display1.DisplayJournal();
+                userJournal.DisplayJournal();
             }
 
             if (userSelect == 3)
             {
-                Journal load1 = new Journal();
-                load1.LoadFromFile();
+                userJournal.LoadFromFile();
             }
 
             if (userSelect == 4)
             {
-                Journal save1 = new Journal();
-                save1.SaveToFile();
+                userJournal.SaveToFile();
             }
 
             if (userSelect == 5)
             {
-                Console.WriteLine ("Quitter");
+                Console.WriteLine ("Goodbye");
             }
         }
     }
