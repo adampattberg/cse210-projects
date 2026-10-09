@@ -34,6 +34,7 @@ public class Journal
     }
 
 // Loads old file that was saved as txt file
+// !!!!!!Need to change variables before submitting!!!!!!!
     public void LoadFromFile()
     {
         string filename = "myFile.txt";
