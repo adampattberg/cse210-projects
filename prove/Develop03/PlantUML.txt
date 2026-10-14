@@ -1,0 +1,29 @@
+@startuml
+Program --|> Scripture
+
+Program : Main(args : string[]) : void
+
+Scripture : _references : Reference[]
+Scripture : _words : Word[]
+Scripture : HideWords() : void
+Scripture : GetRenderedText() : void
+Scripture : CompletelyHidden() : void
+
+Scripture --|> Reference
+
+Reference : _book : string
+Reference : _chapter : int
+Reference : _verse : string
+Reference : Display() :void
+
+Scripture --|> Word
+
+Word : _verse : string
+Word : Hide() : void
+Word : Show() : void
+Word : IsHidden() : void
+Word : GetRenderedText() : void
+@enduml
+
+
+//www.plantuml.com/plantuml/png/TL11JiCm4Bpx5Jc6Gp_00LK22JWWeHQ9GrKX4m-fXMD7wqrB9HwFzs0ZKtD99ZEpcvbTHzR4o-JKCuMHzDIjLjyttNOWE_D2K8M_xfwqzRscCIOScQmVT_khX8_16gNAI6BU21yW-07YtUIFtRvsdG8PCRoczn_jmHe87VlyXqg-1s_W3GZc1L_SDjs6QNPWk7FQPk3xLbYf-vjGgG8bu7i8dwLiBGq7FJCeGUkvbewWYFROdOspqsT9qWmYbPMIv-MYJCjfIfLCRW_XT44-nhfu5lu_tpgno-H-0000
