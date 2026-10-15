@@ -1,29 +1,35 @@
 @startuml
-Program --|> Scripture
+Program ..> Scripture
+Program ..> Reference
 
-Program : Main(args : string[]) : void
+Program : +Main(args : string[]) : void
 
-Scripture : _references : Reference[]
-Scripture : _words : Word[]
-Scripture : HideWords() : void
-Scripture : GetRenderedText() : void
-Scripture : CompletelyHidden() : void
+Scripture : -_reference : Reference
+Scripture : -_words : List<Word>
+Scripture : +Scripture(reference : Reference, text : string)
+Scripture : +HideWords(numberToHide : int)
+Scripture : +GetRenderedText() : string
+Scripture : +IsCompletelyHidden() : bool
 
-Scripture --|> Reference
+Scripture *-- Reference
 
-Reference : _book : string
-Reference : _chapter : int
-Reference : _verse : string
-Reference : Display() :void
+Reference : -_book : string
+Reference : -_chapter : int
+Reference : -_verse : int
+Reference : -_endVerse : int
+Reference : +Reference(book : string, chapter : int, verse : int)
+Reference : +Reference(book : string, chapter : int, verse : int, endVerse : int)
+Reference : +GetDisplayText() : string
 
-Scripture --|> Word
+Scripture *-- Word
 
-Word : _verse : string
-Word : Hide() : void
-Word : Show() : void
-Word : IsHidden() : void
-Word : GetRenderedText() : void
+Word : -_text : string
+Word : -_isHidden : bool
+Word : +Word(text : string)
+Word : +Hide() : void
+Word : +Show() : void
+Word : +IsHidden() : bool
+Word : +GetRenderedText() : string
 @enduml
 
-
-//www.plantuml.com/plantuml/png/TL11JiCm4Bpx5Jc6Gp_00LK22JWWeHQ9GrKX4m-fXMD7wqrB9HwFzs0ZKtD99ZEpcvbTHzR4o-JKCuMHzDIjLjyttNOWE_D2K8M_xfwqzRscCIOScQmVT_khX8_16gNAI6BU21yW-07YtUIFtRvsdG8PCRoczn_jmHe87VlyXqg-1s_W3GZc1L_SDjs6QNPWk7FQPk3xLbYf-vjGgG8bu7i8dwLiBGq7FJCeGUkvbewWYFROdOspqsT9qWmYbPMIv-MYJCjfIfLCRW_XT44-nhfu5lu_tpgno-H-0000
+//www.plantuml.com/plantuml/png/fPBFJW8n4CRlVOeUkoxm0COG4atGH1C3H0_6c497QEosc-aioDlRWbjfW_7W1JhVD_lhdsycdYHIrnZsY6wDik6ZqPZFLwXRwX0oTGRlW61Nm99yoUi7gQsGkFQXy8JQhbzUgx3UEgqOIwIW3D-m9uGgqOgUdKCLMVVQqzLpACPPGvqASPOsu0IVbCvIvH_VQWMHwONjcYNWmaKbEDfIqJe5ce5LWA0MWIYgnCpxxlorQre316OVO0hieNNfd3cz_iLmUFg0_V9uvz3yaV25jzh8bW2FPooyBQ27imvOzVIBMQT2PFiEUBRLW9_GgtyIOf4TgIHEWMwqRutS5uzTlc5CZx7uUxXd5lQFhFqnYZw8RwEE_o8VaEJ5IH1fSdjrld6xKesXbr57vu-ncGIzQymN
