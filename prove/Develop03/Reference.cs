@@ -9,10 +9,8 @@ public class Reference
     private int _endVerse;
 
     public Reference(string book, int chapter, int verse)
+        : this(book, chapter, verse, verse)
     {
-        _book = book;
-        _chapter = chapter;
-        _verse = verse;
     }
     public Reference(string book, int chapter, int verse, int endVerse)
     {
@@ -23,6 +21,11 @@ public class Reference
     }
     public string GetDisplayText()
     {
-        Console.WriteLine($"{_book} {_chapter}:{_verse}-{_endVerse}");
+        if (_verse == _endVerse)
+        {
+            return $"{_book} {_chapter}:{_verse}";
+        }
+
+        return $"{_book} {_chapter}:{_verse}-{_endVerse}";
     }
 }

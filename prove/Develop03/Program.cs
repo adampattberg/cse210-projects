@@ -5,19 +5,30 @@ class Program
 {
     static void Main(string[] args)
     {
-        Scripture s1 = new Scripture();
-        s1.SetReference("John 3:16");
-        
+        Reference reference = new Reference("John", 3, 16);
+        string text = "For God so loved the world that he gave his one and only Son , that whoever believes in him shall not perish but have eternal life.";
+        Scripture scripture = new Scripture(reference, text);
+
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-            string info = Console.ReadLine();
+            Console.WriteLine(scripture.GetRenderedText());
 
-            if (info.Equals("quit"))    
+            if (scripture.IsCompletelyHidden())
             {
                 break;
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Press enter to continue or type 'quit' to finish: ");
+            string? input = Console.ReadLine();
+
+            if (input?.ToLower() == "quit")
+            {
+                break;
+            }
+
+            scripture.HideWords(3);
         }
     }
 }
