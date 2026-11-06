@@ -8,6 +8,7 @@ public class BreathingActivity : Activity
     {
     }
  
+ // overrides abstract RunActivity for AlternatingMessage
     protected override void RunActivity()
     {
         AlternatingMessage();

@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 
+// abstract makes child class determine logic
 public abstract class Activity
 {
     private string _activityName;
@@ -13,21 +14,20 @@ public abstract class Activity
         _activityDescription = description;
     }
  
-    // Child classes can read the duration but can't change it.
+    // protected means child classes can read the duration but can't change it.
     protected int Duration
     {
         get { return _activityDuration; }
     }
  
-    // Template method: every activity runs in the same order.
-    // Program only ever calls this one method.
     public void Run()
     {
         DisplayStartMessage();
-        RunActivity();      // the only part that differs per activity
+        RunActivity();
         DisplayEndMessage();
     }
  
+ // abstract makes child class determine logic
     protected abstract void RunActivity();
  
     private void DisplayStartMessage()
@@ -69,7 +69,7 @@ public abstract class Activity
         }
     }
  
-    // Pause and spin (the UML's "Pause&Spin")
+    // Pause and spin
     protected static void ShowSpinner(int seconds)
     {
         string[] frames = { "|", "/", "-", "\\" };
@@ -85,7 +85,7 @@ public abstract class Activity
         }
     }
  
-    // Pause and count down (the UML's "Pause&Count")
+    // Pause and count down
     protected static void ShowCountdown(int seconds)
     {
         for (int i = seconds; i > 0; i--)

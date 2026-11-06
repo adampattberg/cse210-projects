@@ -4,8 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Create each activity once so the no-repeat prompt pools
-        // last for the whole session.
+        // Create each activity once so promptpool doesn't repeat
         BreathingActivity breathing = new BreathingActivity();
         ReflectingActivity reflecting = new ReflectingActivity();
         ListingActivity listing = new ListingActivity();
