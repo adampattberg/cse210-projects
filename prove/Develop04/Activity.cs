@@ -6,6 +6,7 @@ public abstract class Activity
 {
     private string _activityName;
     private string _activityDescription;
+    private int _seconds;
  
     protected Activity(string name, string description)
     {
@@ -16,14 +17,14 @@ public abstract class Activity
         public void Run()
     {
         DisplayStartMessage();
-        RunActivity();
+        RunActivity(_seconds);
         DisplayEndMessage();
     }
 
 // protected means child classes can read the duration but can't change it.
 // abstract makes child class determine logic
 
-    protected abstract void RunActivity();
+    protected abstract void RunActivity(int seconds);
  
     private void DisplayStartMessage()
     {
@@ -32,14 +33,23 @@ public abstract class Activity
         Console.WriteLine();
         Console.WriteLine(_activityDescription);
         Console.WriteLine();
-        Console.WriteLine("Press enter when you are ready to begin.");
-        Console.ReadLine();
+
+
+        while (true)
+        {
+            Console.Write("How long, in seconds, would you like for your session? ");
+            if (int.TryParse(Console.ReadLine(), out int seconds) && seconds > 0)
+            {
+                _seconds = seconds;
+                break;
+            }
+            Console.WriteLine("Please enter a whole number greater than 0.");
+        }
 
         Console.Clear();
         Console.WriteLine("Get ready...");
         ShowSpinner(5);
         Console.WriteLine();
-
     }
  
     private void DisplayEndMessage()
@@ -48,12 +58,12 @@ public abstract class Activity
         Console.WriteLine("Well done!!");
         ShowSpinner(3);
         Console.WriteLine();
-        Console.WriteLine($"You have completed the {_activityName}.");
+        Console.WriteLine($"You have completed another {_seconds} seconds of the {_activityName}.");
         ShowSpinner(5);
     }
  
     // Pause and spin
-    protected static void ShowSpinner(int seconds)
+    public static void ShowSpinner(int seconds)
     {
         string[] frames = { "|", "/", "-", "\\" };
         DateTime endTime = DateTime.Now.AddSeconds(seconds);

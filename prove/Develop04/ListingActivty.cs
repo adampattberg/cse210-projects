@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading;
  
 public class ListingActivity : Activity
 {
@@ -18,31 +20,86 @@ public class ListingActivity : Activity
     {
     }
  
-    protected override void RunActivity()
+    protected override void RunActivity(int seconds)
     {
         Console.WriteLine("List as many responses as you can to the following prompt:");
         DisplayPrompt();
  
-        Console.WriteLine("Press enter on an empty line when you are finsihed.");
         Console.Write("You may begin in: ");
         ShowCountdown(5);
         Console.WriteLine();
+
+        ClearKeyBuffer();
  
         int count = 0;
+        DateTime endTime = DateTime.Now.AddSeconds(seconds);
 
-        while (true)
+        while (DateTime.Now < endTime)
         {
             Console.Write("> ");
-            string item = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(item))
+            string item = ReadLineUntil(endTime);
+
+            if (item == null)
             {
                 break;
             }
-            count++;
+            if (!string.IsNullOrWhiteSpace(item))
+            {
+                count++;
+            }
         }
  
+        ClearKeyBuffer();
+
         Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("Time's up!");
         Console.WriteLine($"You listed {count} items!");
+    }
+
+    private string ReadLineUntil(DateTime endTime)
+    {
+        StringBuilder text = new StringBuilder();
+
+        while (DateTime.Now < endTime)
+        {
+            if (!Console.KeyAvailable)
+            {
+                Thread.Sleep(50);
+                continue;
+            }
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+
+            if (key.Key == ConsoleKey.Enter)
+            {
+                Console.WriteLine();
+                return text.ToString();
+            }
+            else if (key.Key == ConsoleKey.Backspace)
+            {
+                if (text.Length > 0)
+                {
+                    text.Length--;
+                    Console.Write("\b \b");
+                }
+            }
+            else if (!char.IsControl(key.KeyChar))
+            {
+                text.Append(key.KeyChar);
+                Console.Write(key.KeyChar);
+            }
+        }
+
+        return null;
+    }
+
+    private void ClearKeyBuffer()
+    {
+        while (Console.KeyAvailable)
+        {
+            Console.ReadKey(true);
+        }
     }
  
     private string GetPrompt()

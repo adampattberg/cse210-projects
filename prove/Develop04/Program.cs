@@ -38,7 +38,7 @@ class Program
                     break;
                 default:
                     Console.WriteLine("Please choose 1, 2, 3, or 4.");
-                    System.Threading.Thread.Sleep(1500);
+                    Activity.ShowSpinner(2);
                     break;
             }
         }

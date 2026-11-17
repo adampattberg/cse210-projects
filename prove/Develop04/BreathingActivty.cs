@@ -10,21 +10,29 @@ public class BreathingActivity : Activity
     }
  
  // overrides abstract RunActivity for AlternatingMessage
-    protected override void RunActivity()
+    protected override void RunActivity(int seconds)
     {
-        for (int i = 0; i < BreathCycles; i++)
+        DateTime endTime = DateTime.Now.AddSeconds(seconds);
+
+        while (DateTime.Now < endTime)
         {
-            Breathe("Breathe in...", 4);
-            Breathe("Breathe out...", 6);
+            Breathe("Breathe in...", 4, endTime);
+            Breathe("Breathe out...", 6, endTime);
             Console.WriteLine("");
         }
     }
  
     // Shows one message with a countdown, without running past the end time.
-    private void Breathe(string message, int seconds)
+    private void Breathe(string message, int seconds, DateTime endTime)
     {
+        int remaining = (int)Math.Ceiling((endTime - DateTime.Now).TotalSeconds);
+        if (remaining <= 0)
+        {
+            return;
+        }
+
         Console.Write($"{message} ");
-        ShowCountdown(seconds);
+        ShowCountdown(Math.Min(seconds, remaining));
         Console.WriteLine("");
     }
 }

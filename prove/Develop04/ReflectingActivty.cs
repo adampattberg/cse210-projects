@@ -3,7 +3,6 @@ using System.Collections.Generic;
  
 public class ReflectingActivity : Activity
 {
-    private const int QuestionCount = 4;
     private PromptPool _prompts = new PromptPool(new List<string>
     {
         "Think of a time when you stood up for someone else.",
@@ -31,7 +30,7 @@ public class ReflectingActivity : Activity
     {
     }
  
-    protected override void RunActivity()
+    protected override void RunActivity(int seconds)
     {
         Console.WriteLine("Consider the following prompt:");
         DisplayPrompt();
@@ -40,10 +39,12 @@ public class ReflectingActivity : Activity
         Console.Write("You may begin in: ");
         ShowCountdown(5);
         Console.Clear();
- 
-        for (int i = 0; i < QuestionCount; i++)
+
+        DateTime endTime = DateTime.Now.AddSeconds(seconds);
+
+        while (DateTime.Now < endTime)
         {
-            DisplayReflectionPrompt();
+            DisplayReflectionPrompt(endTime);
         }
     }
  
@@ -66,10 +67,12 @@ public class ReflectingActivity : Activity
         Console.ReadLine();
     }
  
-    private void DisplayReflectionPrompt()
+    private void DisplayReflectionPrompt(DateTime endTime)
     {
+        int remaining = (int)Math.Ceiling((endTime - DateTime.Now).TotalSeconds);
+
         Console.Write($"> {GetReflectionPrompt()} ");
-        ShowSpinner(8);
+        ShowSpinner(Math.Min(8, remaining));
         Console.WriteLine();
     }
 }
