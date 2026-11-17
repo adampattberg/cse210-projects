@@ -23,21 +23,22 @@ public class ListingActivity : Activity
         Console.WriteLine("List as many responses as you can to the following prompt:");
         DisplayPrompt();
  
+        Console.WriteLine("Press enter on an empty line when you are finsihed.");
         Console.Write("You may begin in: ");
         ShowCountdown(5);
         Console.WriteLine();
  
         int count = 0;
-        DateTime endTime = DateTime.Now.AddSeconds(Duration);
- 
-        while (DateTime.Now < endTime)
+
+        while (true)
         {
             Console.Write("> ");
             string item = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(item))
+            if (string.IsNullOrWhiteSpace(item))
             {
-                count++;
+                break;
             }
+            count++;
         }
  
         Console.WriteLine();

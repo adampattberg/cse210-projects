@@ -6,7 +6,6 @@ public abstract class Activity
 {
     private string _activityName;
     private string _activityDescription;
-    private int _activityDuration;
  
     protected Activity(string name, string description)
     {
@@ -14,20 +13,16 @@ public abstract class Activity
         _activityDescription = description;
     }
  
-    // protected means child classes can read the duration but can't change it.
-    protected int Duration
-    {
-        get { return _activityDuration; }
-    }
- 
-    public void Run()
+        public void Run()
     {
         DisplayStartMessage();
         RunActivity();
         DisplayEndMessage();
     }
- 
- // abstract makes child class determine logic
+
+// protected means child classes can read the duration but can't change it.
+// abstract makes child class determine logic
+
     protected abstract void RunActivity();
  
     private void DisplayStartMessage()
@@ -37,13 +32,14 @@ public abstract class Activity
         Console.WriteLine();
         Console.WriteLine(_activityDescription);
         Console.WriteLine();
- 
-        _activityDuration = AskForDuration();
- 
+        Console.WriteLine("Press enter when you are ready to begin.");
+        Console.ReadLine();
+
         Console.Clear();
         Console.WriteLine("Get ready...");
         ShowSpinner(5);
         Console.WriteLine();
+
     }
  
     private void DisplayEndMessage()
@@ -52,21 +48,8 @@ public abstract class Activity
         Console.WriteLine("Well done!!");
         ShowSpinner(3);
         Console.WriteLine();
-        Console.WriteLine($"You have completed another {_activityDuration} seconds of the {_activityName}.");
+        Console.WriteLine($"You have completed the {_activityName}.");
         ShowSpinner(5);
-    }
- 
-    private static int AskForDuration()
-    {
-        while (true)
-        {
-            Console.Write("How long, in seconds, would you like for your session? ");
-            if (int.TryParse(Console.ReadLine(), out int seconds) && seconds > 0)
-            {
-                return seconds;
-            }
-            Console.WriteLine("Please enter a whole number greater than 0.");
-        }
     }
  
     // Pause and spin

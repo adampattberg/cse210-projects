@@ -3,6 +3,7 @@ using System.Collections.Generic;
  
 public class ReflectingActivity : Activity
 {
+    private const int QuestionCount = 4;
     private PromptPool _prompts = new PromptPool(new List<string>
     {
         "Think of a time when you stood up for someone else.",
@@ -40,9 +41,7 @@ public class ReflectingActivity : Activity
         ShowCountdown(5);
         Console.Clear();
  
-        DateTime endTime = DateTime.Now.AddSeconds(Duration);
- 
-        while (DateTime.Now < endTime)
+        for (int i = 0; i < QuestionCount; i++)
         {
             DisplayReflectionPrompt();
         }
