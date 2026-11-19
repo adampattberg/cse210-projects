@@ -1,0 +1,20 @@
+using System;
+
+public class SimpleGoal : Goal
+{
+    private bool _isComplete;
+
+// Used when creating new goal
+    public SimpleGoal(string name, string description, int points)
+        : base(name, description, points)
+    {
+        _isComplete = false;
+    }
+
+// Used when loading goal
+    public SimpleGoal(string name, string description, int points, bool isComplete)
+        : base(name, description, points)
+    {
+        _isComplete = isComplete;
+    }
+}
