@@ -16,5 +16,39 @@ public class ChecklistGoal : Goal
     }
 
 // Used when loading goal
-    
+    public ChecklistGoal(string name, string description, int points, int target, int bonus, int amountCompleted)
+        : base(name, description, points)
+    {
+        _amountCompleted = amountCompleted;
+        _target = target;
+        _bonus = bonus;
+    }
+
+    public override int RecordEvent()
+    {
+        _amountCompleted++;
+
+        if (_amountCompleted == _target)
+        {
+            return GetPoints() + _bonus;
+        }
+
+        return GetPoints();
+    }
+
+    public override bool IsCompleted()
+    {
+        return _amountCompleted >= _target;
+    }
+
+// Adds progress number
+    public override string GetDetailsString()
+    {
+        return $"{base.GetDetailsString()} -- Completed {_amountCompleted}/{_target} times";
+    }
+
+    public override string GetStringRepresentation()
+    {
+        return $"ChecklistGoal:{GetShortName()}|{GetDescription()}|{GetPoints()}|{_target}|{_bonus}|{_amountCompleted}";
+    }
 }

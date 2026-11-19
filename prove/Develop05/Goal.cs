@@ -27,4 +27,16 @@ public abstract class Goal
     {
         return _points;
     }
+
+    public abstract int RecordEvent();
+
+    public abstract bool IsComplete();
+
+    public virtual string GetDetailsString()
+    {
+        string checkbox = IsComplete() ? "[X]" : "[ ]";
+        return $"{checkbox} {_shortName} ({_description})";
+    }
+
+    public abstract string GetStringRepresentation();
 }
