@@ -27,16 +27,16 @@ public abstract class Goal
     {
         return _points;
     }
-
+// Records goal event and returns points earned
     public abstract int RecordEvent();
 
     public abstract bool IsComplete();
-
+// Text shown when listing goals
     public virtual string GetDetailsString()
     {
         string checkbox = IsComplete() ? "[X]" : "[ ]";
         return $"{checkbox} {_shortName} ({_description})";
     }
-
+// Text written to save file
     public abstract string GetStringRepresentation();
 }

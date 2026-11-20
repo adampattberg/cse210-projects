@@ -8,7 +8,7 @@ public class GoalManager
     private List<GoalManager> _goals = new List<Goal>();
     private int _score = 0;
 
-    //Runs main menu
+// Runs main menu
     public void Start()
     {
         string choice = "";
